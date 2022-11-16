@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/T2")
+//@WebServlet("/T2") //web.xml에 컨트롤러 설정해놓음
 public class Test2 extends HttpServlet {
 	//주소를 타고들어오는건 get방식(post방식외에는 다 get), post는 form태그에서 메소드타고가는방법 1개밖에 없음
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

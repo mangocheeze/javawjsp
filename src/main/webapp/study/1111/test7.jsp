@@ -1,4 +1,4 @@
-<!-- 폼태그를 jsp에 넘김(원랜 서블릿에 넘겨야함) -->
+<!-- 폼태그를 jsp(test7OK.jsp)에 넘김(원랜 서블릿에 넘겨야함) -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

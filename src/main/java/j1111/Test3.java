@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/atom") //이름 아무거나 해줘도됨
+//@WebServlet("/T2")
 public class Test3 extends HttpServlet{ //?을해서 무조건 HttpServlet을 상속받아야함
 	//doget하고 스페이스바 엔터치면 나옴
 	//폼에서 post로 넘기면 얘가 필요없음

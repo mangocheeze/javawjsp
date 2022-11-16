@@ -29,8 +29,11 @@
 <p><br/></p>
 <div class="container">
 	<h2>값 전송하기</h2>
-<!-- 	<form name="myform" method="post" action="../../test11Ok"> --> <!-- 서블릿으로연결(콘솔에 출력) -->
-	<form name="myform" method="post" action="test11Ok.jsp"> <!-- test11Ok.jsp로 연결 -->
+	<!-- 	<form name="myform" method="post" action="../../t12"> --> <!-- 여기의 t12는 web.xml에 있음 -->
+	<!-- <form name="myform" method="post" action="/javawjsp/t12"> --> <!-- 원랜 ../../말고 이렇게 쓰는게 맞음 -->
+	<!--<form name="myform" method="post" action="test12Ok.jsp"> --> <!-- 이렇게쓰면 전송을 누르면 test12Ok.jsp 로감 -->
+	<%-- <form name="myform" method="post" action="<%=request.getContextPath()%>/test12Ok"> --%> <!-- 전송을 누르면 test12Ok로가고,web.xml의 컨트롤러가  j1111아래 Test12.java를 부름  -->
+	<form name="myform" method="post" action="<%=request.getContextPath()%>/t12"> <!--action에 쓰는건 url주소, 전송을 누르면 가는곳(submit을 통해서) (url에다가 쓰면간다)/ 위에 javawjsp대신 이렇게써주면됨 -->
 		성명 : <input type="text" name="name" value="Hong kil Dong" class="form-control"/>
 		나이 : <input type="number" name="age" value="25" class="form-control"/>
 		<div>
@@ -39,7 +42,7 @@
 		</div>
 		<div>
 		취미:
-			<input type="checkbox" name="hobby" value="등산">등산 <%-- id로 프론트 체크해야함 --%>
+			<input type="checkbox" name="hobby" value="등산" checked>등산 <%-- 지금은 name만썼지만 원래 id로 프론트 체크해야함 --%>
 			<input type="checkbox" name="hobby" value="낚시">낚시
 			<input type="checkbox" name="hobby" value="독서">독서
 			<input type="checkbox" name="hobby" value="음악감상">음악감상
@@ -47,6 +50,10 @@
 		</div>
 		<input type="submit" value="전송" onclick= "fCheck()" class="btn btn-success"/>
 	</form>
+	<hr/>
+	<p>
+		<img src="../../images/1.jpg" width="300px"/>
+	</p>
 </div>
 <p><br/></p>
 </body>

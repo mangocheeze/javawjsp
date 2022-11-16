@@ -7,6 +7,7 @@
 </head>
 <body>
 	<h2>망고네 집에 오신것을 환영합니다.</h2>
+	<img src="${pageContext.request.contextPath}/images/6.jpg" width="150px" class="m-2"/>
 	<p>
 		<b>반갑습니다</b>
 	</p>

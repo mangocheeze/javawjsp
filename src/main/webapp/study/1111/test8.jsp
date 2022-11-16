@@ -12,7 +12,7 @@
 <body>
 <p><br/></p>
 <div class="container">
-	<h2>값 전송하기(get방식)</h2>
+	<h2>값 전송하기</h2>
 <!-- <form name="myform" method="get" action="../../atom/t7">  <%-- action에 마음대로써줌(서블릿으로 보낼거임), ../../쓰는이유:webapp까지 올려주려고 --%> -->	
 	<form name="myform" method="post" action="../../atom/t7"> <%-- post로 넘기면 doPost로 받아야지 에러안남 --%>
 		성명 : <input type="text" name="name" value="Hong kil Dong" class="form-control"/>

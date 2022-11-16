@@ -21,9 +21,9 @@
 		/*
 			이곳은 자바 여러줄 주석입니다
 		*/
-		System.out.println("이곳은 jsp파일입니다."); 
+		System.out.println("이곳은 jsp파일입니다."); //적용이되지만 소스코드보기에선 보호되어서 안보임(콘솔에출력)
 		
-		out.println("<font color='red'>이곳은 jsp의 out메소드</font> 입니다");  //적용이되지만 소스코드에선 보호되어서 안보임
+		out.println("<font color='red'>이곳은 jsp의 out메소드</font> 입니다");  
 	%>
 	<hr/>
 	<%="안녕하세요.이곳은 <b>표현식(Expression)</b> 내부입니다<br/>" %>
