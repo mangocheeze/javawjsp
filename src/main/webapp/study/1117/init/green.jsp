@@ -22,7 +22,7 @@
 	
 	<p>공통변수로 설정된 초기값 받아오기</p>
 	<p>회사명 : ${logoName} </p>
-	<p>홈페이지주소 : <a href="${homeAddress}" target="_blank">${homeAddress}</a></p> <!-- http://192.168.50.210:9090/javawjsp/ 까지만쓰면 index.jsp(홈페이지 초기파일) 의 주소링크가 뜸 파일을 지정하고싶으면 /뒤에 파일명쓰기 -->
+	<p>홈페이지주소 : <a href="${homeAddress}" target="_blank">${homeAddress}</a></p> <!-- http://192.168.50.210:9090/javawjsp/ 까지만쓰면 홈페이지 초기파일(index.jsp) 의 주소링크가 뜸 파일을 지정하고싶으면 /뒤에 파일명쓰기,초기파일은 web.xml에 설정 -->
 	<div>
 		<input type="button" value="서블릿으로부터초기값가져오기" onclick="location.href='${pageContext.request.contextPath}/Green';" class="btn btn-success"/>
 		<input type="button" value="공통변수할당값가져오기" onclick="location.href='${pageContext.request.contextPath}/GlobalGreen';" class="btn btn-success"/>

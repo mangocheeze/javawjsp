@@ -1,4 +1,4 @@
-<%@ page import="j1116h.ProductVO"%>
+<%@ page import="study.j1116h.ProductVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
   ProductVO vo = (ProductVO) request.getAttribute("vo");

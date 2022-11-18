@@ -9,7 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-@WebFilter("/*") //web.xml에서 filter매핑처리 주석해도 한글안깨지게함(들어오는 모든경로에 대해서 필터해달라)
+@WebFilter("/*") //우리가 만든 모든파일이 이파일을 거치게함 .모든파일이 한글처리가되게함web.xml에서 filter매핑처리 주석해도 한글안깨지게함(들어오는 모든경로에 대해서 필터해달라)
 public class EncodingFilter implements Filter{
 
 	@Override  //EncodingFilter 에 빨간줄뜬거에서 첫번째꺼 누르면 자동으로 나옴

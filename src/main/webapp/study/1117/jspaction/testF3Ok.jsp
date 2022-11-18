@@ -1,4 +1,4 @@
-<!-- testF1Ok.jsp를 프론트에서 하는방식 -->
+<!-- testF2Ok.jsp를 *이용해 한줄로 하기 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% request.setCharacterEncoding("utf-8"); %> 
@@ -14,7 +14,7 @@
 자바 클래스는 jsp액션태그(jsp:useBean)를 사용한다 나중에 많이사용!!
 (Test1VO vo = new Test1VO();  를 html에선 이렇게씀 ) -->
 <%-- <jsp:useBean id="vo" class="j1117.Test1VO"></jsp:useBean> 더이상 쓸게없으면 끊어주면됨 --%>
-<jsp:useBean id="vo" class="j1117.Test1VO"/>
+<jsp:useBean id="vo" class="study.j1117.Test1VO"/>
 
 <!-- 생성된 클래스에 값을 넣을때 : jsp:setProperty태그사용 -->
 <!-- 생성된 클래스에 값을 꺼낼때 : jsp:getProperty태그사용 -->

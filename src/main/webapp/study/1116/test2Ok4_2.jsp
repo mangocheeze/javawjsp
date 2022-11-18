@@ -1,5 +1,5 @@
 <!-- 꺽쇠 퍼센트 없애기 -->
-<%@page import="j1116.Test2VO"%>
+<%@page import="study.j1116.Test2VO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	Test2VO vo = (Test2VO) request.getAttribute("vo"); //앞에서 "vo"에 vo임

@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>사용자에러페이지..(errorUser.jsp 로보낼거임)</title>
+	<title>사용자에러페이지..(errorUser.jsp)</title>
 	<jsp:include page="../../../include/bs4.jsp"></jsp:include>
 </head>
 <body>
