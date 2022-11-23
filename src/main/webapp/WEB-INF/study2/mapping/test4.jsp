@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="ctp" value="${pageContext.request.contextPath}"/>
+<c:set var="ctp" value="${pageContext.request.contextPath}"/>  <!-- ${ctp}를 사용할수있게해줌 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
 <body>
 <p><br/></p>
 <div class="container">
-	<form name="myform" method="post" action="${ctp}/mapping/Test4Ok.do"> <!-- 확장자 do로보냄/ 그럼 모든 do는 오라고하는 Test3Controller.java로감 --><!-- /mapping은 써도되고안써도되고 -->
+	<form name="myform" method="post" action="${ctp}/mapping/Test4Ok.do"> <!-- 확장자 .do로보냄/ 그럼 모든 do는 오라고하는 Test3Controller.java로감 --><!-- /mapping은 써도되고안써도되고 -->
 		<h2>자료 전송 연습</h2>
 		<div>
 			첫번째수 : <input type="text" name="su1" value="100" class="form-control m-3" />

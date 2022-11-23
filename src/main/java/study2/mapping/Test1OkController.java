@@ -18,8 +18,7 @@ public class Test1OkController extends HttpServlet{
 		System.out.println("/mapping/Test1Ok 서블릿입니다."); //에러나서 찍어봄, 이게 콘솔에 뜨면 잘통과했다는거임
 	
 		//RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\study2\\mapping\\test1.jsp");  \를 /이것처럼 사용하겠다는게 \\   에러남???
-		//RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/study2/mapping/test1.jsp"); //Test1Ok컨트롤러가 test1.jsp호출
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/mapping/Test1"); 
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/study2/mapping/test1.jsp"); //Test1Ok컨트롤러가 test1.jsp호출
 		// 보통 / 이걸 많이씀 , ""에 이동하고자 하는 주소를적음 
 		dispatcher.forward(request, response);
 	}

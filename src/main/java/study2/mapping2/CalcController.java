@@ -16,6 +16,7 @@ public class CalcController extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//인터페이스 만듦 (이름은 마음대로)
 		MappingInterface command = null; //command 변수 타입 MappingInterface 으로 인터페이스를 만들겠다 (*MappingInterface.java 를 만듦)
+		//null값으로하면 선언할때 생성하겠다고 전역변수로 준거임
 		
 		String viewPage = "/WEB-INF/study2/mapping2"; //선언해줌 , 여기까진 공통부분
 		

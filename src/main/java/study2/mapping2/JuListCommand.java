@@ -17,6 +17,7 @@ public class JuListCommand implements MappingInterface {
 		JusorokDAO dao = new JusorokDAO(); //DAO생성. 데이터베이스의 JusoRokDAO 이미만들어놓음
 		
 		ArrayList<JusorokVO> vos = dao.getMemberList(); //DAO한테 의뢰만한거임 , dao에서 return vos로 넘겨줌
+		//배열을 담을때 생성하는법 은 : ArrayList<타입> vos = new ArrayList<타입> 인데 여기선 dao에있는 멤버리스트를 바로 담아올거라 이렇게씀
 		
 		request.setAttribute("vos", vos);//DAO에서 보내줘서 여기선 저장만하면되는거임
 	}

@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@WebServlet("/mapping/Test3")
+//@WebServlet("/mapping/Test3") // /mapping은 속임수(안적어도됨) -확장자패턴에서만  ,url에선 확실히적어줘야함
 @WebServlet("*.do") //확장자패턴 , 확장자 .do만 맞으면 내게로와라
 //@WebServlet({"*.do","*.calc"}) //확장자패턴 .do 도 하고 calc도 하고 여러가지올수있음
 public class Test3Controller extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		StringBuffer url = request.getRequestURL(); //이걸로 너 어디서온거야 하고 찾음
+		StringBuffer url = request.getRequestURL(); //현재페이지의 주소 알아내기, 이걸로 너 어디서온거야 하고 찾음
 		System.out.println("url :" + url);
 
 		String uri = request.getRequestURI(); //도메인빠지고 context루트부터뜸 , 우린 앞으로 uri로 작업할거임(도메인관계없이 파일만든 경로부터하려고)
@@ -26,6 +26,7 @@ public class Test3Controller extends HttpServlet{
 		//String com = uri.substring(uri.lastIndexOf("/")); //com은 마음대로 uri에있는거 찾아냄
 		//System.out.println("com:" + com);
 
+		// /와 .do 사이의 값만 꺼내려고함
 		String com = uri.substring(uri.lastIndexOf("/"), uri.lastIndexOf(".")); // 뒤에서부터 /가있는 위치부터 . 앞까지
 		System.out.println("com:" + com); //com이름은 마음대로줌
 
@@ -34,15 +35,17 @@ public class Test3Controller extends HttpServlet{
 		String viewPage = "/WEB-INF/study2/mapping"; //viewPage : jsp주소를 담고있는 변수
 		//String viewPage = "/WEB-INF"; //이렇게만 적으면 파일명 신경안써도됨
 		
-//		if(com.equals("/Test3_1")) {
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/study2/mapping/Test3_1"); 
-//			dispatcher.forward(request, response);
-//		}
-		if(com.equals("/Test3_1")) { //com에 들어있는게 /Test3_1 이면
-			viewPage += "/test3_1.jsp";
+		//원랜 이렇게 작성하는건데 계속 반복되니까 제일아래로 빼고 경로자리에 viewPage변수로 줌
+/*	if(com.equals("/Test3_1")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/study2/mapping/Test3_1"); 
+			dispatcher.forward(request, response);
+		}*/ 
+		
+		if(com.equals("/Test3_1")) { //com(위에서 잘라낸거) 에 들어있는게 /Test3_1 이면 여기에 걸림
+			viewPage += "/test3_1.jsp"; // /WEB-INF/study2/mapping/test3_1.jsp 라는거임
 		}
 		else if(com.equals("/Test3_2")) {
-			viewPage += "/test3_2.jsp";
+			viewPage += "/test3_2.jsp"; //test3_2을 호출
 		}
 		else if(com.equals("/Test3_3")) {
 			viewPage += "/test3_3.jsp";
@@ -56,24 +59,26 @@ public class Test3Controller extends HttpServlet{
 			String opt = request.getParameter("opt")==null ? "" : request.getParameter("opt");
 			
 			Test4Calc t4 = new Test4Calc();  //Test4Calc class 파일을 생성
-			int res = t4.getCalc(su1, su2, opt); //Test4Calc.java호출한건 int res 로담음
+			int res = t4.getCalc(su1, su2, opt); //Test4Calc.java를 su1,su2,opt 를 가져오라고 호출, 호출해서 받아온걸 int res 로담음
 			
 			request.setAttribute("su1", su1);
 			request.setAttribute("su2", su2);
 			request.setAttribute("opt", opt);
 			request.setAttribute("res", res);
 			
-			viewPage += "/test4Ok.jsp"; //test4Ok.jsp 뷰로 감
+			viewPage += "/test4Ok.jsp"; //test4Ok.jsp 뷰 호출
 		}
 		else {
 //			out.println("<script>");
 //			out.println("alert('잘못된 경로입니다');");
-			//out.println("location.href='/WEB-INF/study2/mapping/test3.jsp';"); //get방식은 안감 . 무조건 컨트롤러로 가야함 서블릿에서의 (resposeRedirect랑 똑같은거임 dispatcher.forward랑?? 두개를 같이쓸수없어서)
+//			out.println("location.href='/WEB-INF/study2/mapping/test3.jsp';"); //get방식은 안감 . 무조건 컨트롤러로 가야함 서블릿에서의 (resposeRedirect랑 똑같은거임 dispatcher.forward랑?? 두개를 같이쓸수없어서)
 //			out.println("locationo.href='"+request.getContextPath()+"mapping/Test3';"); //
 //			out.print("</script>");
+			
 //			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/study2/mapping/test3.jsp"); 
 //			dispatcher.forward(request, response);
-			viewPage += "/test3.jsp";
+			
+			viewPage += "/test3.jsp"; //위에서 걸리지 않았으면 이걸 호출
 		}
 		 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage); 

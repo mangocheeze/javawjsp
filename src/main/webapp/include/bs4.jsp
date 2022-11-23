@@ -3,3 +3,5 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <!-- 부트스트랩 자동 설정됨 -->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- 부트스트랩에 w3사용하기위해 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>

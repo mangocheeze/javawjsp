@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<title>test1.jsp</title>
 	<jsp:include page="../../../include/bs4.jsp"></jsp:include>  
-	<!-- mapping폴더는 나자신 위에 study2 , WEB-INF , webapp 이렇게 3개아래에있음 -->
+	<!-- mapping폴더는 나자신, 위에 study2 , WEB-INF , webapp 이렇게 3개아래에있음 -->
 </head>
 <body>
 <p><br/></p>
