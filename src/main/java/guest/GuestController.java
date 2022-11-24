@@ -15,16 +15,18 @@ public class GuestController extends HttpServlet{
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		GuestInterface command = null; //인터페이스를 생성해야함 /command객체를 부름-그러려면 request,response를 만들어야되는데 이걸 인터페이스에서 미리만듦
-		String viewPage = "/WEB-INF/guest";  //이코드는 jsp를 호출할때는 전혀문제가없으나 서블릿으로 호출할때는 문제가생김 (경로를 지워줘야함)
+		GuestInterface command = null; //인터페이스를 생성해야함 /command객체를 부름-그러려면 request,response를 만들어야되는데 이걸 인터페이스에서 미리정의해줌
+		//이렇게 전역변수로 선언해놓으면 아래쪽에서 생성만해서 쓰면됨(command를 여러번 사용가능해짐)
+		
+		String viewPage = "/WEB-INF/guest";  //WEB-INF아래에 guest 뒤에 들어올경로는 아래에 if문에따라 바뀜,이코드는 jsp를 호출할때는 전혀문제가없으나 서블릿으로 호출할때는 문제가생김 (경로를 지워줘야함)
 	
 		String uri = request.getRequestURI();
 		String com = uri.substring(uri.lastIndexOf("/"), uri.lastIndexOf("."));  //uri의 / 부터 . 앞에까지 잘라냄
 		
 		//방명록의 초기페이지 List만드는거임
 		if(com.equals("/guList")) {  //guList : 방명록 리스트 , 서비스객체필요(할일을 시켜야되니까)(서비스단에는 command객체가있어야함)
-			command = new GuListCommand(); //GuestInterface를 구현하는 구현클래스
-			command.execute(request, response); //이렇게 보냄
+			command = new GuListCommand(); //얘는 생성만하고/GuestInterface를 구현하는 구현(실행)클래스 생성
+			command.execute(request, response); //일은 얘가하는거임 /command객체의 있는 execute메소드의 request와 response 를 같이 보냄
 			
 			//갔다가 돌아옴
 			viewPage += "/guList.jsp"; //돌아와서 guList.jsp를 호출

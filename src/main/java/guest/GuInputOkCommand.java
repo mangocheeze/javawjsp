@@ -1,6 +1,7 @@
 package guest;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +24,17 @@ public class GuInputOkCommand implements GuestInterface {
 		GuestDAO dao = new GuestDAO();
 		GuestVO vo = new GuestVO();
 		
+		//이메일 유효성검사(정규식체크)
+		String regEmail = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
+		
+		if(Pattern.matches(regEmail, email)) {
+			vo.setEmail(email);
+		}
+		else {
+			vo.setEmail("");
+		}
 		vo.setName(name);
-		vo.setEmail(email);
+//		vo.setEmail(email);
 		vo.setHomePage(homePage);
 		vo.setContent(content);
 		vo.setHostIp(hostIp);

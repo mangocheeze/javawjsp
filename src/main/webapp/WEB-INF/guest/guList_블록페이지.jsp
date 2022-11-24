@@ -106,28 +106,15 @@
 	<!-- 첫페이지 /이전블록 / 1(페이지) 2(페이지) 3(페이지) /다음블록/ 마지막페이지 -->
 	<!-- 첫페이지 /이전블록 / 4(페이지) 5(페이지) 6(페이지) /다음블록/ 마지막페이지 -->
 	<div class="text-center">
-		<ul class="pagination justify-content-center"> <!-- justify-content-center: 부트스트랩, 가운데로가게하기 -->
-			<c:if test="${pag > 1}">
-				 <li class="page-item"><a class="page-link text-secondary" href="${ctp}/guList.gu?pag=1">첫페이지</a></li>
-			</c:if>
-			<c:if test="${curBlock > 0}">
-				 <li class="page-item"><a class="page-link text-secondary" href="${ctp}/guList.gu?pag=${(curBlock-1)*blockSize + 1}">이전블록</a></li>
-			</c:if>
-			<c:forEach var="i" begin="${(curBlock)*blockSize + 1}" end="${(curBlock)*blockSize + blockSize}" varStatus="st"> <!-- 시작은 첫번째는 0블럭이면 시작페이지가 1이됨  -->
-				<c:if test="${i <= totPage && i == pag}">
-					 <li class="page-item active"><a class="page-link bg-secondary border-secondary" href="${ctp}/guList.gu?pag=${i}">${i}</a></li> <!-- 현재페이지에 active -->
-				</c:if> 
-				<c:if test="${i <= totPage && i != pag}"><!-- 마지막페이지가 보이면 다음블록은 안보이게하기 -->
-					 <li class="page-item"><a class="page-link text-secondary" href="${ctp}/guList.gu?pag=${i}">${i}</a></li>
-				</c:if> 
-			</c:forEach>
-			<c:if test="${curBlock < lastBlock}">
-				 <li class="page-item"><a class="page-link text-secondary" href="${ctp}/guList.gu?pag=${(curBlock+1)*blockSize + 1}">다음블록</a></li>
-			</c:if> <!-- 다음블록누르면 그블록의 첫번째페이지가 나오게함 ex. 내가 0블럭에 있으면 다음블록누르면 페이지4가나오게  -->
-			<c:if test="${pag < totPage}">
-				 <li class="page-item"><a class="page-link text-secondary" href="${ctp}/guList.gu?pag=${totPage}">마지막페이지</a></li>
-			</c:if>
-		</ul>
+		<c:if test="${pag > 1}">[<a href="${ctp}/guList.gu?pag=1">첫페이지</a>]</c:if>
+		<c:if test="${curBlock > 0}">[<a href="${ctp}/guList.gu?pag=${(curBlock-1)*blockSize + 1}">이전블록</a>]</c:if> <!-- 나의 현재블록위치가 0보다 크면 이전블록이있으니까 실행(0블록빼곤 다실행됨) -->
+		<c:forEach var="i" begin="${(curBlock)*blockSize + 1}" end="${(curBlock)*blockSize + blockSize}" varStatus="st"> <!-- 시작은 첫번째는 0블럭이면 시작페이지가 1이됨  -->
+			<c:if test="${i <= totPage}"><!-- 마지막페이지가 보이면 다음블록은 안보이게하기 -->
+				[<a href="${ctp}/guList.gu?pag=${i}">${i}</a>]
+			</c:if> 
+		</c:forEach>
+		<c:if test="${curBlock < lastBlock}">[<a href="${ctp}/guList.gu?pag=${(curBlock+1)*blockSize + 1}">다음블록</a>]</c:if> <!-- 다음블록누르면 그블록의 첫번째페이지가 나오게함 ex. 내가 0블럭에 있으면 다음블록누르면 페이지4가나오게  -->
+		<c:if test="${pag < totPage}">[<a href="${ctp}/guList.gu?pag=${totPage}">마지막페이지</a>]</c:if>
 	</div>
 </div>
 <p><br/></p>

@@ -8,9 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class GuestDAO {
-	private Connection conn = null; //import 올릴때 우린 무조건 sql로 올림(mysql로 안함)
-	private PreparedStatement pstmt = null;
-	private ResultSet rs = null;
+	//import 올릴때 우린 무조건 sql로 올림(mysql로 안함)
+	private Connection conn = null; //자바와 DB를 연결하는객체
+	private PreparedStatement pstmt = null; //SQL문을 실행하고 결과를 반환
+	private ResultSet rs = null;  //결과가있는 SQL문 실행후 결과를 받을때만 사용
 	
 	private String sql = ""; //null값 나오는게 지겨워서 처음부터 공백으로함
 	
@@ -35,7 +36,7 @@ public class GuestDAO {
 	
 	//객체 소멸처리
 	public void pstmtClose() {
-		if(pstmt != null) {
+		if(pstmt != null) { //null이 아니며
 			try {
 				pstmt.close();
 			} catch (Exception e) {} //에러가 날일이 없어서 닫음
@@ -51,16 +52,20 @@ public class GuestDAO {
 		}
 	}
 
-	//게시글 전체 리스트 읽어오기 (command객체에서 호출)
-	public ArrayList<GuestVO> getGuestList() {
-		ArrayList<GuestVO> vos = new ArrayList<>();
+	//방명록 전체 리스트 읽어오기 (GuListCommand객체에서 호출 -dao에 있는걸 읽어서 vo에 담아오려는거임)
+	public ArrayList<GuestVO> getGuestList(int startIndexNo, int pageSize) {
+		ArrayList<GuestVO> vos = new ArrayList<>(); //vos생성
 		try {
-			sql = "select * from guest order by idx desc"; //내림차순(나중에쓴게 위에올라옴)
+			sql = "select * from guest order by idx desc limit ?,?"; //guest테이블의 idx를 내림차순으로 보여달라(나중에쓴게 위에올라옴) / 한계
 			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery(); //rs에 내용이 들어옴
+			pstmt.setInt(1, startIndexNo); //첫번째물음표 시작인덱스번호
+			pstmt.setInt(2, pageSize); //두번째물음표 한페이지의 건수
+			
+			rs = pstmt.executeQuery(); //수행결과로 ResultSet 객체의값을 반환? select 구문수행할때사용 (select구문의 sql문 결과를 rs에담음)
 			
 			while(rs.next()) {
-					vo = new GuestVO();
+					//여기선 idx만 넘기지만 vo에 다 저장해놓음
+					vo = new GuestVO(); //vo생성
 					vo.setIdx(rs.getInt("idx")); //rs에있는 idx를 읽어와서 vo에 저장
 					vo.setName(rs.getString("name"));
 					vo.setEmail(rs.getString("email"));
@@ -69,7 +74,7 @@ public class GuestDAO {
 					vo.setHostIp(rs.getString("hostIp"));
 					vo.setContent(rs.getString("content"));
 					
-					vos.add(vo);
+					vos.add(vo); //vos에 vo를저장
 			}
 			
 		} catch (SQLException e) {
@@ -116,6 +121,27 @@ public class GuestDAO {
 			pstmtClose();
 		}
 		return res;
+	}
+
+	//방명록의 총 레코드 건수 구하기
+	public int totRecCnt() {
+		int totRecCnt = 0;
+		try {
+			sql = "select count(*) as cnt from guest"; //별명을 cnt로 하겠다
+			pstmt = conn.prepareStatement(sql);
+			rs= pstmt.executeQuery();
+			
+			rs.next(); //무조건 나옴 ,자료가 없어도 0으로 나옴,if로 물어볼필요 없음
+			
+//			totRecCnt = rs.getInt(1); //데이터베이스에선 0번째가 아니라 1번째임 그래서 (1)넣기 ????, 가능하나 이렇게쓰지말고 변수에 담아서 넣기
+			totRecCnt = rs.getInt("cnt"); //변수에담아서 넣음
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 에러 : " + e.getMessage());
+		} finally {
+			pstmtClose();
+		}
+		return totRecCnt;
 	}
 	
 	
