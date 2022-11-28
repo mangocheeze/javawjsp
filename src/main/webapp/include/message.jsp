@@ -14,6 +14,7 @@
 		//"${url}" = 'http://'; 이렇게 스크립트를 서버변수에는 못담음(서버에 값이 이미 소멸돼서?)
 		let msg = "${msg}";  
 		let url = "${url}"; 
+		let val = "${val}"; //~님 로그아웃되셨습니다하려고
 		// EL로 적어줌(서버프로그램이 먼저실행해야되니까 표현식으로 적어줘야했는데 여기선 jstl사용안해서 EL로도가능) 
 		// 서블릿에서 보내는변수는 서버변수임 서버를 자바스크립트 변수에 담는건 가능	
 		/*서버값: 저장소에 담아서 가져오는거, 서버의 값은 영원한게 아님, 계속바뀔수있음 그래서 서버의 값을 스크립트변수에 담는건가능하지만
@@ -28,6 +29,9 @@
 		else if(msg == "adminLogoutOk") msg ="관리자님 로그아웃 되셨습니다.";
 		else if(msg == "guDeleteOk") msg ="방명록의 글이 삭제 되었습니다.";
 		else if(msg == "guDeleteNo") msg ="방명록의 글을 삭제하는데 실패했습니다!";
+		else if(msg == "loginOk") msg = val + "님 로그인 성공!!";
+		else if(msg == "loginNo") msg ="로그인 실패~~";
+		else if(msg == "memLogoutOk") msg = val + "님 로그아웃 되었습니다";
 		
 		
 		

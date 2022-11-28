@@ -143,6 +143,25 @@ public class GuestDAO {
 		}
 		return totRecCnt;
 	}
+
+	//사용자가 방명록에 글쓴횟수 가져오기
+	public int getNumberGuest(String name) {
+		int num = 0;
+		try {
+			sql = "select count(*) as cnt from guest where name = ?"; //guest테이블에서 name이 ?과 일치하는(이름이일치하는) 데이터 갯수 출력, 별명을 cnt로줌
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			rs.next();
+			num = rs.getInt("cnt");
+			
+    } catch (Exception e) {
+      System.out.println("SQL 에러 : " + e.getMessage());
+    } finally {
+      rsClose();
+    }
+		return num;
+	}
 	
 	
 }
