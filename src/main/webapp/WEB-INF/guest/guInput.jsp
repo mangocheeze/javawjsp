@@ -27,7 +27,7 @@
       <input type="text" class="form-control" name="email" id="email" placeholder="이메일을 형식에 맞게 입력하세요" />	
     </div>
 		<div class="form-group">
-      <label for="homePage">Homepage</label>
+      <label for="homePage">HomePage</label>
       <input type="text" class="form-control" name="homePage" id="homePage" value="http://" placeholder="홈페이지주소를 입력하세요" />
     </div>
 		<div class="form-group">

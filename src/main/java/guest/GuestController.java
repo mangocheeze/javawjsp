@@ -31,7 +31,10 @@ public class GuestController extends HttpServlet{
 			//갔다가 돌아옴
 			viewPage += "/guList.jsp"; //돌아와서 guList.jsp를 호출
 		}
-		else if(com.equals("/guInput")) { //guInput:방명록에 글씀 , 누구나와서 글을쓰면 DB에올려야함(누구나라는건 form만띄우면되지 서비스객체를 만들필요없음)
+		else if(com.equals("/guInput")) { 
+			//guList.jsp에서 글쓰기 누르면 guInput.gu부름 guInput:방명록에 글씀 , 글쓰기 누르는건 처리를따로하지않고 글쓰는 guInput.jsp로 가야되니까 command객체필요없음
+			//누구나와서 글을쓰면 DB에올려야함(누구나라는건 form만띄우면되지 서비스객체를 만들필요없음)
+
 //			command = new GuListCommand();  서비스객체가 필요없으니까 이것도 필요없음
 //			command.execute(request, response); 
 			viewPage += "/guInput.jsp"; 
@@ -48,13 +51,13 @@ public class GuestController extends HttpServlet{
 			//viewPage = request.getContextPath()+"/include/message.jsp";  //response면이렇게 앞에 써줘야함
 			viewPage = "/include/message.jsp";  //RequestDispatcher라서 앞에꺼 뺌 /루트(webapp)밑에 include밑에 message.jsp를 부름
 		}
-		else if(com.equals("/adminLogin")) { 
+		else if(com.equals("/adminLogin")) { //guList.jsp에서 관리자 누르면 
 		viewPage += "/adminLogin.jsp"; 
 		}
 		else if(com.equals("/adminLoginOk")) { 
 		command = new AdminLoginOkCommand(); 
 		command.execute(request, response); 
-		viewPage = "/include/message.jsp"; //message.jsp로보냄
+		viewPage = "/include/message.jsp"; //message.jsp로보냄 , +=하면안됨 경로가안맞아짐
 		}
 		else if(com.equals("/adminLogout")) { 
 			command = new AdminLogoutCommand(); 

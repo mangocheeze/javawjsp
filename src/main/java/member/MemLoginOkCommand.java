@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import conn.SecurityUtil;
+
 public class MemLoginOkCommand implements MemberInterface {
 
 	@Override
@@ -23,6 +25,10 @@ public class MemLoginOkCommand implements MemberInterface {
 		MemberVO vo = dao.getLoginCheck(mid); //dao에 사용자가 입력한 mid를 가지고가서 LoginCheck를 읽어옴 거기서 자료가있으면 vo로넘긴걸 vo에담음
 		//id와 pwd두개다 넘기는건 로그인할때만쓰니까, 하나 만들어놓고 다른곳에서도 계속사용하고싶어서 mid만 넘김
 
+		/*입력되어 넘어온 비밀번호를 암호화 시킨후 DB에 저장된 pwd와 비교한다*/
+		SecurityUtil security = new SecurityUtil();
+		pwd = security.encryptSHA256(pwd); //암호화해서 새로 변수pwd도받음
+		
 		if(vo == null || !pwd.equals(vo.getPwd())) { //vo가 null이면 자료가 없는거임, null이거나 pwd가 vo에있는 pwd와 같지 않으면
 			request.setAttribute("msg", "loginNo"); //loginNo메세지처리
 			request.setAttribute("url", request.getContextPath()+"/memLogin.mem"); //자료가없으면 메세지처리후 다시 로그인하러감

@@ -43,6 +43,18 @@
 				<td style ="text-align:right;"><a href="${ctp}/guest/guInput.gu" class="btn btn-sm btn-secondary">글쓰기</a></td> 
 			</tr>
 		</table>
+		<div>
+		<form name="myform" method="post" action="${ctp}/guList.gu">
+		<!-- 한페이지당 분량 결정하기 -->
+			표시할 게시물 수:
+			<select name="pageSize" id="pageSize" class="text-centr">
+				<option value="5" <c:if test="${pageSize ==5}">selected</c:if>>5개</option>
+				<option value="10" <c:if test="${pageSize ==10}">selected</c:if>>10개</option>
+				<option value="20" <c:if test="${pageSize ==20}">selected</c:if>>20개</option>
+			</select>
+			<input type="submit" value="선택" class="btn btn-primary btn-sm"/>
+		</form>
+		</div>
 		<table class="table table-borderless m-0 p-0">
 			<tr>
 				<td class="text-right">

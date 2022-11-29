@@ -13,7 +13,7 @@ create table member (
 	email    varchar(50) not null,      /* 이메일(아이디/비밀번호 분실시 사용) - 필수입력,형식체크필수 */
 	homePage varchar(50) not null,      /* 홈페이지(블로그) 주소*/
 	job      varchar(20),								/* 회원 직업*/
-	hobby    varchar(20),								/* 회원 취미(2개이상은 '/'로 구분처리) */
+	hobby    varchar(100),								/* 회원 취미(2개이상은 '/'로 구분처리) */
 	photo		 varchar(100) default 'noimage.jpg' , /*회원사진(아무것도 안넣으면 no image사진-기본값으로)*/
 	content  text,											/* 회원 자기소개 */
 	userInfor char(6)	default '공개',		/* 회원정보 공개여부 (공개/비공개) - 정해져있는 글자 처리하는건 char() */
@@ -31,7 +31,7 @@ create table member (
 
 /*drop table member;*/
 desc member;
-
+/*delete from member where idx =;*/
 insert into member values (default,'admin','1234','관리맨','관리자',default,default,'010-4050-7759','충북 청주시 상당구 단재로 312','asdf990515@naver.com','https://blog.naver.com/asdf990515','학생','등산/바둑',default,'관리자입니다.',default,default,default,0,default,default,default,default);  /*기본데이터는 하나도빠짐없이 넣어야함*/
 
 select * from member;

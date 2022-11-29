@@ -20,18 +20,30 @@
 	      <li class="nav-item">
 	        <a class="nav-link" href="#">BOARD</a>
 	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="#">PDS</a> <!-- 자료실 -->
-	      </li>    
-	      <li class="nav-item dropdown">
-	        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">STUDY</a>  <!-- #으로둠:다른데로 이동하면안되니까 /dropdown :메뉴클릭하면 부메뉴나오게함 -->
-	      	<div class="dropdown-menu">
-			      <a class="dropdown-item" href="${ctp}/pass.st">비밀번호암호화</a>
-			      <a class="dropdown-item" href="#">Link 2</a>
-			      <a class="dropdown-item-text" href="#">Text Link</a>
-			    </div>
-	      </li>
-      </c:if>  
+	      <c:if test="${level != 1}"> <!-- level이 1이아닐경우만 실행  -->
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">PDS</a>
+		      </li>    
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">STUDY</a>
+		        <div class="dropdown-menu">
+				      <a class="dropdown-item" href="${ctp}/pass.st">비밀번호암호화</a>
+				      <a class="dropdown-item" href="#">Link 2</a>
+				      <a class="dropdown-item-text" href="#">Text Link</a>
+				    </div>
+		      </li>
+	      </c:if>
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">My Page</a>
+		        <div class="dropdown-menu">
+				      <a class="dropdown-item" href="${ctp}/memMain.mem">회원방</a>
+				      <c:if test="${level != 1}"><a class="dropdown-item" href="${ctp}/memList.mem">회원리스트</a></c:if> <!-- level1은 회원리스트안보이게함 -->
+				      <a class="dropdown-item" href="${ctp}/memUpdatePwd.mem">회원비밀번호변경</a>
+				      <a class="dropdown-item" href="${ctp}/memPwdCheck.mem">회원정보변경</a>
+				      <a class="dropdown-item" href="${ctp}/memDelete.mem">회원탈퇴</a>
+				    </div>
+		      </li>	      
+      </c:if>
       <li class="nav-item">
       	<c:if test="${level > 4}"><a class="nav-link" href="${ctp}/memLogin.mem">Login</a></c:if>
       	<c:if test="${level <= 4}"><a class="nav-link" href="${ctp}/memLogout.mem">Logout</a></c:if>

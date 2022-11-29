@@ -30,7 +30,8 @@ public class GuListCommand implements GuestInterface {
 		int pag = request.getParameter("pag")==null ? 1: Integer.parseInt(request.getParameter("pag")); //앞에서 page가 넘어옴
 		
 	  //2.한페이지의 분량을 결정한다(한 page건수)
-		int pageSize = 5;  //사용자나 프로그래머가 정함 ( 사용자가 정할수있게 하는건 받아서해야되는데 지금은 그냥 5건으로 정해놈)
+		//int pageSize = 5;  //사용자나 프로그래머가 정함 ( 사용자가 정할수있게 하는건 받아서해야되는데 지금은 그냥 5건으로 정해놈)
+		int pageSize = request.getParameter("pageSize")==null? 5 : Integer.parseInt(request.getParameter("pageSize"));
 		
 		//3.총 레코드 건수를 구한다
 		int totRecCnt = dao.totRecCnt();
@@ -72,6 +73,8 @@ public class GuListCommand implements GuestInterface {
 		request.setAttribute("blockSize", blockSize);
 		request.setAttribute("curBlock", curBlock);
 		request.setAttribute("lastBlock", lastBlock);
+		request.setAttribute("pageSize", pageSize);
+		
 	}
 
 }

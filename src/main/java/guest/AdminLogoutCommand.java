@@ -13,7 +13,7 @@ public class AdminLogoutCommand implements GuestInterface {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-//		session.removeAttribute("sMid"); //끊는거임, 근데 이걸끝내면 회원가입했을때 같은 변수 sMid를 쓰니까 일반회원 아이디가 끊겨버림
+//		session.removeAttribute("sMid"); //로그아웃하면 세션 끊는거임, 근데 이걸끝내면 회원가입했을때 같은 변수 sMid를 쓰니까 일반회원 아이디가 끊겨버림
 		session.removeAttribute("sAMid"); //그래서 변수를 sAMid로 해줌
 
 		request.setAttribute("msg", "adminLogoutOk");

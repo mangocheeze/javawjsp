@@ -39,12 +39,13 @@ public class GuInputOkCommand implements GuestInterface {
 		vo.setContent(content);
 		vo.setHostIp(hostIp);
 		
-		int res = dao.setGuInput(vo); //vo를 넘기고 돌아오면 res로받음 , 돌아와서 1이 들어오면 정상적으로 잘처리가됨 0이들어오면 비정상적처리
+		int res = dao.setGuInput(vo); //dao에 위에서 담은 vo를 가져가서 DB에가서 저장시키고오라고한뒤 여기로돌아와서 처리유무를 res로받음 , 돌아와서 1이 들어오면 정상적으로 잘처리가됨 0이들어오면 비정상적처리
 		
 		if(res == 1) { //숫자라 ==비교
 			//이 두개를 쌍으로 보냄
 			request.setAttribute("msg", "guInputOk"); //application,session은 계속 남아있어서 안되고 pageContext는 자기페이지밖에안되니까 request에 담아야함
 			request.setAttribute("url", request.getContextPath()+"/guList.gu"); //location.href로 갈주소를 여기다 적음
+			//res가 1이되면 정상적으로 처리되어있다는거니까 guInputOk를 msg에 담고 guLisit.gu로감 -> guList.jsp로감 -> 글쓰기 누르면 guInput.gu로 감 -> guInput.jsp로감 -> guInputOk.gu로감 -> messgae.jsp로감 -> guInputOk msg인 방명록에 글이 등록되었습니다를 띄우고 url이 guList.gu로감
 		}
 		else { //res가 1로오지않으면 비정상적으로 처리됐다는 뜻
 			request.setAttribute("msg", "guInputNo"); //application,session은 계속 남아있어서 안되고 pageContext는 자기페이지밖에안되니까 request에 담아야함

@@ -15,7 +15,7 @@ public class GuDeleteCommand implements GuestInterface {
 		
 		GuestDAO dao = new GuestDAO();
 		
-		if(idx != 0) { //넘어온 idx가 0과 같지않으면 수행
+		if(idx != 0) { //삭제 버튼을 눌렀을때 넘어온 idx가 0과 같지않으면 수행
 			int res = dao.setGuDelete(idx); //아무나 지우면안됨 ,url에다가 고유번호 같이보내야함
 			if(res == 1) { //숫자라 ==비교
 				//이 두개를 쌍으로 보냄

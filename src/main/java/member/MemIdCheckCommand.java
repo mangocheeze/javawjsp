@@ -16,10 +16,10 @@ public class MemIdCheckCommand implements MemberInterface {
 		 
 		MemberVO vo = dao.getLoginCheck(mid);
 		
-		if(vo == null) { //사용가능한 아이디
+		if(vo == null) { //vo에 없으면 사용가능한 아이디
 			request.setAttribute("res", 1); //참이니까 1
 		}
-		else {
+		else { //사용불가능한 아이디
 			request.setAttribute("res", 0); //거짓이니까 0
 		}
 		request.setAttribute("mid", mid); //if에도적용되고 else에도적용됨

@@ -152,9 +152,10 @@ public class GuestDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, name);
 			rs = pstmt.executeQuery();
-			rs.next();
-			num = rs.getInt("cnt");
-			
+
+			if(rs.next()) {
+				num = rs.getInt("cnt");
+			}
     } catch (Exception e) {
       System.out.println("SQL 에러 : " + e.getMessage());
     } finally {

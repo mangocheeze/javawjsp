@@ -39,16 +39,59 @@ public class MemberController extends HttpServlet{
 			command.execute(request, response);
 			viewPage += "/memMain.jsp";
 		}
-		else if(com.equals("/memIdCheck")) { //새로운소식이왔거나, 답장이왔거나 처리
+		else if(com.equals("/memIdCheck")) { //아이디 중복처리
 			command = new MemIdCheckCommand();
 			command.execute(request, response);
 			viewPage += "/memIdCheck.jsp";
+		}
+		else if(com.equals("/memNickCheck")) { //닉네임 중복처리
+			command = new MemNickCheckCommand();
+			command.execute(request, response);
+			viewPage += "/memNickCheck.jsp";
 		}
 		else if(com.equals("/memJoin")) {
 			viewPage += "/memJoin.jsp";
 		}
 		else if(com.equals("/memJoinOk")) {
-			viewPage += "/memLogin.jsp"; //가입끝내면 로그인하러가야되니까
+			command = new MemJoinOkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message.jsp";
+		}
+		else if(com.equals("/memList")) { //닉네임 중복처리
+			command = new MemListCommand();
+			command.execute(request, response);
+			viewPage += "/memList.jsp";
+		}
+		else if(com.equals("/memInfor")) { //전체회원리스트에서 아이디 누를경우처리
+			command = new MemInforCommand();
+			command.execute(request, response);
+			viewPage += "/memInfor.jsp";
+		}
+		else if(com.equals("/memUpdatePwd")) {
+			viewPage += "/memUpdatePwd.jsp";
+		}
+		else if(com.equals("/memUpdatePwdOk")) { 
+			command = new MemUpdatePwdOkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message.jsp";
+		}
+		else if(com.equals("/memPwdCheck")) { //회원정보 변경시 비밀번호확인 
+			viewPage += "/memPwdCheck.jsp";
+		}
+		else if(com.equals("/memPwdCheckOk")) { //내용이있음
+			command = new MemPwdCheckOkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message.jsp";
+		}
+		else if(com.equals("/memUpdate")) { //내용이있음
+			command = new MemUpdateCommand();
+			command.execute(request, response);
+			viewPage += "/memUpdate.jsp";
+		}
+		else if(com.equals("/memUpdateOk")) { //내용이있음
+			command = new MemUpdateOkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

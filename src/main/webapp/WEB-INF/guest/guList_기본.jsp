@@ -21,8 +21,8 @@
 		'use strict';
 		function delCheck(idx) { //delCheck에서 idx를 넘겼으니까
 			let ans = confirm("정말로 삭제하시겠습니까?");
-			//if(ans) location.href="${ctp}/guDelete.gu?idx=${vo.idx}";  //
-			if(ans) location.href="${ctp}/guDelete.gu?idx="+idx;  //idx=에는 서버값을 주면안됨 ???????
+			//if(ans) location.href="${ctp}/guDelete.gu?idx=${vo.idx}";  //idx=에는 서버값을 주면안됨
+			if(ans) location.href="${ctp}/guDelete.gu?idx="+idx;  //ans면 idx를 가지고 guDelete.gu 로감
 		}
 	</script>
 </head>
@@ -47,9 +47,10 @@
 		<!-- 방명록은 게시판과다름( 게시판은 글제목만뜨고 눌러야 내용보임, 방명록은 이름하고내용이바로뜸-통으로 띄워야함) -->
 		<table class="table table-borderless mb-0"> <!-- 테이블안에 테이블 -->
 			<tr>
-				<%-- <td>방문번호 : ${vo.idx} <!-- 고유번호로 할거면 vo에있는 고유번호 --> --%>
-				<td>방문번호 : ${no} 
-					<c:if test="${sAMid == 'admin'}"><a href="javascript:delCheck(${vo.idx})" class="btn btn-sm btn-danger">삭제</a></c:if> <!-- ?idx=${vo.idx}": url에 idx값도 같이보내는거임 삭제하면 방문번호도 삭제해야되니가 -->
+<%-- 				<td>방문번호 : ${no}  --%>
+				<td>방문번호 : ${vo.idx} <!-- 고유번호로 할거면 vo에있는 고유번호 -->
+					<c:if test="${sAMid == 'admin'}"><a href="javascript:delCheck(${vo.idx})" class="btn btn-sm btn-danger">삭제</a></c:if> 
+					<!-- 관리자 아이디가 admin일때 만 수행 => vo에있는 idx가지고 위쪽<script> 에 delCheck하게함 ,삭제하면 방문번호도 삭제해야되니까 -->
 				</td>
 				<td style ="text-align:right;">방문IP : ${vo.hostIp}</td>  <!-- vo.hostIp 는 vo에있는 필드명 -->
 			</tr>
