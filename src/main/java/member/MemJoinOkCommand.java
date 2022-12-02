@@ -52,14 +52,14 @@ public class MemJoinOkCommand implements MemberInterface {
 		MemberDAO dao = new MemberDAO();
 		
 		MemberVO vo = dao.getLoginCheck(mid); //자료가있으면 담기고 없으면안담김 자료가있다는건 중복됐다는거
-		if(vo != null) {
+		if(vo != null) { //중복이 됐으면 
 			request.setAttribute("msg", "idCheckNo");
-			request.setAttribute("url", request.getContextPath()+"/memJoin.mem");
+			request.setAttribute("url", request.getContextPath()+"/memJoin.mem"); //다시 회원가입으로가게함
 			return; //return타입이없음. 리턴만하면 끝남
 		}
 		
-		String tempNickName = dao.memNickCheck(nickName);
-		if(!tempNickName.equals("")) { //공백이 아니면
+		String tempNickName = dao.memNickCheck(nickName); //temp는 임시로 준이름
+		if(!tempNickName.equals("")) { //가져온 닉네임이 공백이 아니면
 			request.setAttribute("msg", "nickCheckNo");
 			request.setAttribute("url", request.getContextPath()+"/memJoin.mem");
 			return; //return타입이없음. 리턴만하면 끝남
@@ -93,11 +93,11 @@ public class MemJoinOkCommand implements MemberInterface {
 		
 		if(res ==1) {
 			request.setAttribute("msg", "memJoinOk");
-			request.setAttribute("url", request.getContextPath()+"/memLogin.mem");
+			request.setAttribute("url", request.getContextPath()+"/memLogin.mem"); //로그인하러감
 		}
 		else {
 			request.setAttribute("msg", "memJoinNo");
-			request.setAttribute("url", request.getContextPath()+"/memJoin.mem");
+			request.setAttribute("url", request.getContextPath()+"/memJoin.mem"); //다시 회원가입하러감
 		}
 	}
 

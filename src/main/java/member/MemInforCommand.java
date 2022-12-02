@@ -6,11 +6,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class MemInforCommand implements MemberInterface {
+import admin.AdminInterface;
+
+public class MemInforCommand implements MemberInterface, AdminInterface { //다중인터페이스구현
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String mid = request.getParameter("mid");
+		int pag = request.getParameter("pag")=="" ? 1 : Integer.parseInt(request.getParameter("pag")); //페이지도받음.페이지가 넘어오지않았으면 1페이지, 넘어왔으면 integer처리해서 페이지
 		
 		MemberDAO dao = new MemberDAO();
 		MemberVO vo = dao.getLoginCheck(mid);
@@ -22,7 +25,7 @@ public class MemInforCommand implements MemberInterface {
 		else if(vo.getLevel() == 3) strLevel = "우수회원";
 		else if(vo.getLevel() == 4) strLevel = "운영자";
 		
-		
+		request.setAttribute("pag", pag);
 		request.setAttribute("strLevel", strLevel);
 		request.setAttribute("vo", vo);
 

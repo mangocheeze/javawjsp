@@ -41,7 +41,8 @@
 				    <button type="button" onclick="location.href='${ctp}/memJoin.mem';" class="btn btn-primary">회원가입</button> <!-- memJoin.mem으로 보냄 -->
 				  </div>
 				  <div class="row" style="font-size:12px">
-				  	<span class="col"><input type="checkbox" name="idCheck" checked />아이디 저장</span>
+				  	<!-- <span class="col"><input type="checkbox" name="idCheck" checked />아이디 저장</span> -->
+				  	<span class="col"><input type="checkbox" name="idCheck" />아이디 저장</span>
 				  	<span class="col">
 				  		[<a href="#">아이디찾기</a>] /
 				  		[<a href="#">비밀번호찾기</a>]

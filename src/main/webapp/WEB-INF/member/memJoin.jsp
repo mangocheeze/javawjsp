@@ -190,6 +190,8 @@
     		window.open(url,"nWin","width=580px,height=250px");
     	}
     }
+    
+    
   </script>
 </head>
 <body>
@@ -272,7 +274,7 @@
     </div>
     <div class="form-group">
       <label for="address">주소</label>
-			<input type="hidden" name="address" id="address"> <!-- hidden여기서 왜쓰지????? -->
+			<input type="hidden" name="address" id="address"> 
 			<div class="input-group mb-1">
 				<input type="text" name="postcode" id="sample6_postcode" placeholder="우편번호" class="form-control">
 				<div class="input-group-append">
@@ -372,7 +374,7 @@
     <button type="button" class="btn btn-secondary" onclick="fCheck()">회원가입</button> &nbsp;
     <button type="reset" class="btn btn-secondary">다시작성</button> &nbsp;
     <button type="button" class="btn btn-secondary" onclick="location.href='${ctp}/memLogin.mem';">돌아가기</button>
-    
+    <!-- 하나로 묶어서 보내기 위해 hidden사용 -->
     <input type="hidden" name="photo"/>
     <input type="hidden" name="tel"/>
     <input type="hidden" name="email"/>

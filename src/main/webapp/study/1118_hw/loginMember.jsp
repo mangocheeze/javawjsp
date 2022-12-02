@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	Cookie[] cookies = request.getCookies();
-	String mid=""; //전역변수를 줄거임 아래다가 뿌려야하니까
-	
-	if(cookies != null) {	
-		for(int i=0; i<cookies.length; i++) {
-			if(cookies[i].getName().equals("cMid")) {//쿠키들중 쿠키명이 cMid(쿠키에있는 아이디랑)랑 비교해서 같은걸가져올거임(cMid를 가져올거야)
-				mid = cookies[i].getValue(); //근데 cMid가아니라 거기들어있는 값을 가져와야함 그걸 변수 mid에 담음
-				break; //빠져나감
-			}
-		}
-	}
+	String mid = session.getAttribute("sMid") == null ? "" : (String)session.getAttribute("sMid");  //null이면 공백 아니면 문자로바꿔서 mid에 넣어라
 %>
 
 <!DOCTYPE html>

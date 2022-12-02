@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="ctp" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>memJoin.jsp</title>
+  <title>memUpdate.jsp</title>
   <jsp:include page="/include/bs4.jsp"></jsp:include>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="${ctp}/js/woo.js"></script>
@@ -274,6 +275,7 @@
       </select>
     </div>
     <div class="form-group">
+      <!-- 
       <div class="form-check-inline">
         <span class="input-group-text">취미</span> &nbsp; &nbsp;
 			  <label class="form-check-label">
@@ -315,6 +317,12 @@
 			    <input type="checkbox" class="form-check-input" value="기타" name="hobby" checked/>기타
 			  </label>
 			</div>
+	    -->
+	    취미 : 
+	    <c:set var="varHobbys" value="${fn:split('등산/낚시/수영/독서/영화감상/바둑/축구/기타','/')}"/>
+	    <c:forEach var="tempHobby" items="${varHobbys}" varStatus="st"> &nbsp; &nbsp;
+	      <input type="checkbox" class="form-check-input" value="${tempHobby}" name="hobby" <c:if test="${fn:contains(hobby,varHobbys[st.index])}">checked</c:if>/>${tempHobby} &nbsp;
+	    </c:forEach>
     </div>
     <div class="form-group">
       <label for="content">자기소개</label>

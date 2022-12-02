@@ -39,6 +39,7 @@
 		</c:if>
 		
 		<tr><td>사진 : <img src="${ctp}/data/member/${vo.photo}" width="150px"/></td></tr>
+		<tr><td><button type="button" class="btn btn-secondary" onclick="location.href='${ctp}/memList.mem?pag=${pag}';">돌아가기</button></td></tr><!-- pag번호같이넘겨주기 -->
 	</table>
 </div>
 <p><br/></p>
