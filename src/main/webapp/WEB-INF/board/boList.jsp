@@ -64,7 +64,12 @@
 		<c:forEach var="vo" items="${vos}"><!-- 반복문 -->
 			<tr>
 				<td>${curScrStartNo}</td>  <!-- curScrStartNo :변수이름. 중간에 삭제하면 idx 비어있지않게하기 -->
-				<td class="text-left"><a href="${ctp}/boContent.bo?idx=${vo.idx}&pageSize=${pageSize}&pag=${pag}">${vo.title}</a><c:if test="${vo.hour_diff <= 24}"><img src="${ctp}/images/new.gif"/></c:if></td> <!-- 24시간동안은 new이미지가 떠있음 --> 
+				<td class="text-left">
+					<a href="${ctp}/boContent.bo?idx=${vo.idx}&pageSize=${pageSize}&pag=${pag}">${vo.title}</a>
+					<c:if test="${vo.replyCount != 0}">(${vo.replyCount})</c:if> <!-- 댓글 -->
+					<c:if test="${vo.hour_diff <= 24}"><img src="${ctp}/images/new.gif"/></c:if>
+				</td> <!-- 24시간동안은 new이미지가 떠있음 --> 
+				
 				<td>${vo.nickName}</td>
 				<%-- <td>${fn:substring(vo.wDate,0,10)}(${vo.day_diff})</td> --%> <!-- vo.wDate를 0부터 10개앞에까지 자름 -->  
 				<%-- <td>${vo.day_diff > 0 ? fn:substring(vo.wDate,0,10) : fn:substring(vo.wDate,11,19)}</td> --%>  

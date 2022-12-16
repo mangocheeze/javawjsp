@@ -12,6 +12,7 @@
 	<jsp:include page="/include/bs4.jsp"></jsp:include>
 	<script>
 		'use strict';
+		//좋아요 두번누를때 처리
 		function goodCheck() {
 			//아무것도할게없으니까 ajax로 바로들어감
 			$.ajax({
@@ -102,7 +103,7 @@
     }
     
     //댓글삭제
-		function replyDelCheck(idx) { //변수 idx로 받음
+		function replyDelCheck(idx) { //댓글의 고유번호 변수 idx로 받음
     	let ans = confirm("현재 댓글을 삭제하시겠습니까?");
 			if(!ans) return false;
 			
@@ -113,7 +114,7 @@
 				success : function(res) {
 					if(res == "1") {
 						alert("댓글이 삭제되었습니다.");
-						location.reload();
+						location.reload(); //본문에 div처리해서 부분reload하는방법도있으나 잘안먹음
 					}
 					else {
 						alert("댓글 삭제 실패 ~~");
@@ -205,12 +206,12 @@
 </div>
 <!-- 댓글보여주는창 -->
 <div class="container">
-	<table class="table table-hover text-center">
-		<tr>
-			<th>작성자</th>
+	<table class="table table-hover text-left">
+		<tr style="background-color:#eee">
+			<th>&nbsp;작성자</th>
 			<th>댓글내용</th>
-			<th>작성일자</th>
-			<th>접속IP</th>
+			<th class="text-center">작성일자</th>
+			<th class="text-center">접속IP</th>
 		</tr>
 		<c:forEach var="replyVo" items="${replyVos}">
 			<tr>
@@ -219,9 +220,11 @@
 						(<a href="javascript:replyDelCheck(${replyVo.idx})" style="color:red" title="삭제하기" >삭제</a>) <!-- 삭제(ajax사용)-댓글의 고유번호를 넘겨줘야함(부모글말고) -->
 					</c:if>	
 				</td>
-				<td>${replyVo.content}</td> <!-- <br/>처리해줘야함-엔터처리 -->
-				<td>${replyVo.wDate}</td>
-				<td>${replyVo.hostIp}</td>
+				<td>
+					${fn:replace(replyVo.content,newLine,"<br/>")}
+				</td> <!-- <br/>처리해줘야함-엔터처리 -->
+				<td class="text-center">${replyVo.wDate}</td>
+				<td class="text-center">${replyVo.hostIp}</td>
 			</tr>
 		</c:forEach>
 	</table>

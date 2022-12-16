@@ -141,6 +141,7 @@
 			</c:if>
 		</ul>
 	</div>
+<!-- 블록페이지 끝 -->
 </div>
 <p><br/></p>
 <jsp:include page="/include/footer.jsp"></jsp:include>

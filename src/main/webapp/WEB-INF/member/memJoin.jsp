@@ -198,11 +198,11 @@
 <jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container" style="padding:30px">
-  <form name="myform" method="post" action="${ctp}/memJoinOk.mem" class="was-validated">
+  <form name="myform" method="post" action="${ctp}/memJoinOk.mem" class="was-validated" enctype="multipart/form-data">
     <h2>회 원 가 입</h2>
     <br/>
     <div class="form-group">
-      <label for="mid">아이디 : &nbsp; &nbsp;<input type="button" value="아이디 중복체크" id="midBtn" class="btn btn-secondary btn-sm" onclick="idCheck()"/></label>
+      <label for="mid">아이디 : &nbsp; &nbsp;<input type="button" value="아이디 중복체크" id="midBtn" class="btn btn-secondary btn-sm" onclick="idCheck()"/></label> <!-- for="mid"는 입력창에서 이름입력칸이아니라 이름을 눌러도 커서가 나오게하는거(어르신들위해)- -->
       <input type="text" class="form-control" name="mid" id="mid" placeholder="아이디를 입력하세요." required autofocus/>
     </div>
     <div class="form-group">

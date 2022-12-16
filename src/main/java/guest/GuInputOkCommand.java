@@ -50,7 +50,6 @@ public class GuInputOkCommand implements GuestInterface {
 		else { //res가 1로오지않으면 비정상적으로 처리됐다는 뜻
 			request.setAttribute("msg", "guInputNo"); //application,session은 계속 남아있어서 안되고 pageContext는 자기페이지밖에안되니까 request에 담아야함
 			request.setAttribute("url", request.getContextPath()+"/guInput.gu"); //다시 입력해야되니까 guInput 컨트롤러로감
-			
 		}
 		
 	}

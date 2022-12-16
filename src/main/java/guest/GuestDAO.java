@@ -64,17 +64,17 @@ public class GuestDAO {
 			rs = pstmt.executeQuery(); //수행결과로 ResultSet 객체의값을 반환? select 구문수행할때사용 (select구문의 sql문 결과를 rs에담음)
 			
 			while(rs.next()) {
-					//여기선 idx만 넘기지만 vo에 다 저장해놓음
-					vo = new GuestVO(); //vo생성
-					vo.setIdx(rs.getInt("idx")); //rs에있는 idx를 읽어와서 vo에 저장
-					vo.setName(rs.getString("name"));
-					vo.setEmail(rs.getString("email"));
-					vo.setHomePage(rs.getString("homePage"));
-					vo.setVisitDate(rs.getString("visitDate"));
-					vo.setHostIp(rs.getString("hostIp"));
-					vo.setContent(rs.getString("content"));
-					
-					vos.add(vo); //vos에 vo를저장
+				//여기선 idx만 넘기지만 vo에 다 저장해놓음
+				vo = new GuestVO(); //vo생성
+				vo.setIdx(rs.getInt("idx")); //rs에있는 idx를 읽어와서 vo에 저장
+				vo.setName(rs.getString("name"));
+				vo.setEmail(rs.getString("email"));
+				vo.setHomePage(rs.getString("homePage"));
+				vo.setVisitDate(rs.getString("visitDate"));
+				vo.setHostIp(rs.getString("hostIp"));
+				vo.setContent(rs.getString("content"));
+				
+				vos.add(vo); //vos에 vo를저장
 			}
 			
 		} catch (SQLException e) {

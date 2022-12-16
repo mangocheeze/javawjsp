@@ -109,5 +109,50 @@ select * from board where idx < 5 order by idx desc limit 1; -- idx가 5보다 �
 select * from board where idx > 5 limit 1; -- idx가 5보다 큰걸 1개만 보여달라 (다음글)
 
 
+/* 댓글의 수를 전체 List에 출력하기 연습 */
+select * from boardReply order by idx desc; /*댓글테이블의 내용을 내림차순으로 출력*/
 
+-- 댓글테이블(boardReply)에서 원본글테이블(board)의 고유번호 31번글에 달려있는 댓글의 개수는 ?
+select count(*) from boardReply where boardIdx= 31; -- 원본글 31번에 달려있는 댓글 한건만출력
 
+-- 댓글테이블(boardReply)에서 원본글테이블(board)의 고유번호 31번글에 달려있는 댓글의 개수는 ?
+-- 원본글의 고유번호와 함께 출력, 갯수의 별명은 replyCnt
+select boardIdx,count(*) as replyCnt from boardReply where boardIdx = 31;
+
+-- 댓글테이블(boardReply)에서 원본글테이블(board)의 고유번호 31번글에 달려있는 댓글의 개수는 ?
+-- 원본글의 고유번호와 함께 출력, 갯수의 별명은 replyCnt
+-- 이때 원본글을 쓴 닉네임을 함께 출력하시오. 단 닉네임은 board(원본글)테이블에서 가져와서 출력하시오
+SELECT boardIdx,
+ (SELECT nickName FROM	board where idx = 31) AS nickName,
+ count(*) AS replyCnt
+ FROM boardReply WHERE boardIdx = 31; /*서브테이블*/
+
+-- 앞의 문장을 부모테이블(board)의 관점에서 보자...
+SELECT mid,nickName FROM board where idx = 31;	
+
+-- 앞의 닉네임을 자식(댓글) 테이블(boardReply)에서 가져와서 보여준다면 ???
+SELECT mid,
+	(select nickName from boardReply where boardIdx=31) as nickName
+	FROM board where idx = 31; /* 서브쿼리가 하나만 있지않아서 에러남 */
+	
+-- 부모관점(board)에서 고유번호 31번의 아이디와, 현재글에 달려있는 댓글의 개수?
+SELECT mid,
+	(SELECT count(*) FROM boardReply WHERE boardIdx=31) 
+	FROM board WHERE idx=31;
+	
+
+-- 부모관점(board)에서 board테이블의 모든 내용과(댓글), 현재글에 달려있는 댓글의 개수를 가져오되, 최근글 5개만출력?
+SELECT *,
+	(SELECT count(*) FROM boardReply WHERE boardIdx=board.idx) as replyCount
+	FROM board
+	order by idx desc
+	limit 5;
+
+-- 부모관점(board)에서 board테이블의 모든 내용과(댓글), 현재글에 달려있는 댓글의 개수를 가져오되, 최근글 5개만출력?
+-- 각각의 테이블에 별명을 붙여서 앞의 내용을 변경시켜보자.
+SELECT *,
+	(SELECT count(*) FROM boardReply WHERE boardIdx=b.idx) as replyCount
+	FROM board b
+	order by idx desc
+	limit 5;
+/*b라고 별명을 줌*/

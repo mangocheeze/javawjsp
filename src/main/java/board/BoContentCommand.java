@@ -57,7 +57,7 @@ public class BoContentCommand implements BoardInterface {
 		}
 		String imsiGoodIdx = "boardGood" + idx;
 		if(goodIdx.contains(imsiGoodIdx)) { //contains () : 문자열 저장(포함)되어있나?  
-			session.setAttribute("sSw", "1");
+			session.setAttribute("sSw", "1"); // 로그인 사용자가 이미 좋아요를 클릭한 게시글이라면 빨간색으로 표시하기위해 sSW에 1을 전송하고있다
 		}
 		else { 
 			session.setAttribute("sSw", "0");
@@ -74,7 +74,7 @@ public class BoContentCommand implements BoardInterface {
 		//------------------
 		
 		//입력된 댓글 가져오기
-		ArrayList<BoardReplyVO> replyVos = dao.getBoReply(idx); //현재글의 idx를넘김 , 댓글이 한두개가아닐수있으니 arraylist
+		ArrayList<BoardReplyVO> replyVos = dao.getBoReply(idx); //현재글의 idx를넘김 , 댓글이 한두개가아닐수있으니 arraylist/실무에선 List인터페이스로 더많이사용
 		request.setAttribute("replyVos", replyVos);
 		
 		

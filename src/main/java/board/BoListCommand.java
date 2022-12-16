@@ -29,7 +29,7 @@ public class BoListCommand implements BoardInterface {
 		int curBlock = (pag - 1) / blockSize;
 		int lastBlock = (totPage - 1) / blockSize;
 		
-		ArrayList<BoardVO> vos = dao.getBoList(startIndexNo, pageSize); //시작하는거부터 한페이지분량만큼
+		ArrayList<BoardVO> vos = dao.getBoList(startIndexNo, pageSize); //시작하는거부터 한페이지분량만큼 (자료가져옴)
 		
 		
 		request.setAttribute("vos", vos);

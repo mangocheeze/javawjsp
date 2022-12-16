@@ -27,9 +27,9 @@ public class MemLoginOkCommand implements MemberInterface {
 
 		/*입력되어 넘어온 비밀번호를 암호화 시킨후 DB에 저장된 pwd와 비교한다*/
 		SecurityUtil security = new SecurityUtil();
-		pwd = security.encryptSHA256(pwd); //암호화해서 새로 변수pwd도받음
+		pwd = security.encryptSHA256(pwd); //암호화해서 새로 변수pwd로받음
 		
-		if(vo == null || !pwd.equals(vo.getPwd()) || vo.getUserDel().equals("OK")) { //vo가 null이면 자료가 없는거임, null이거나 pwd가 vo에있는 pwd와 같지 않거나,userDel 이 'OK'면
+		if(vo == null || !pwd.equals(vo.getPwd()) || vo.getUserDel().equals("OK")) { //vo가 null이면 자료가 없는거임, null이거나 pwd가 vo에있는 pwd와 같지 않거나,userDel(회원탈퇴유무) 'OK'면
 			request.setAttribute("msg", "loginNo"); //loginNo (로그인안됨) 메세지처리
 			request.setAttribute("url", request.getContextPath()+"/memLogin.mem"); //자료가없으면 메세지처리후 다시 로그인하러감
 			return; //계속 진행되면 안되니까 끊어주기
@@ -84,8 +84,6 @@ public class MemLoginOkCommand implements MemberInterface {
 		request.setAttribute("url", request.getContextPath()+"/memMain.mem");
 		request.setAttribute("val", vo.getNickName());
 		
-		
-    
 	}
 
 }

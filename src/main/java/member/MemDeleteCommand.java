@@ -20,7 +20,7 @@ public class MemDeleteCommand implements MemberInterface {
 		dao.setMemberDel(mid);
 		
 		request.setAttribute("msg", "memberDelOk");
-		request.setAttribute("url", request.getContextPath()+"/memLogout.mem");
+		request.setAttribute("url", request.getContextPath()+"/memLogout.mem"); //로그아웃시킴
 	}
 
 }

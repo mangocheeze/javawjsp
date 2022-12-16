@@ -135,6 +135,7 @@
     			document.getElementById("nickNameBtn").focus();
     		}
     		else {
+    			// 묶여진 필드(email/tel)를 폼태그안에 hidden태그의 값으로 저장시켜준다.
     			myform.email.value = email;
 	  			myform.tel.value = tel;
 	  			
@@ -167,11 +168,11 @@
 <jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container" style="padding:30px">
-  <form name="myform" method="post" action="${ctp}/memUpdateOk.mem" class="was-validated">
+  <form name="myform" method="post" action="${ctp}/memUpdateOk.mem" class="was-validated"  enctype="multipart/form-data">
     <h2>회 원 정 보 수 정</h2>
     <br/>
     <div class="form-group">
-      아이디 : ${sMid}; <!-- id는 바뀌면안되니까 -->
+      아이디 : ${sMid} <!-- id는 바뀌면안되니까 -->
     </div>
     <div class="form-group">
       <label for="nickName">닉네임 : &nbsp; &nbsp;
@@ -350,7 +351,7 @@
     <button type="reset" class="btn btn-secondary">다시작성</button> &nbsp;
     <button type="button" class="btn btn-secondary" onclick="location.href='${ctp}/memMain.mem';">돌아가기</button>
     
-    <input type="hidden" name="photo"/>
+    <input type="hidden" name="photo" value="${vo.photo}"/>
     <input type="hidden" name="tel"/>
     <input type="hidden" name="email"/>
   </form>

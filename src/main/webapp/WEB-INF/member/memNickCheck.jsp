@@ -5,7 +5,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>memNickCheck</title>
+  <title>memNickCheck.jsp</title>
   <%@ include file="/include/bs4.jsp" %>
   <script>
 		//부모창에 닉네임값 보내기

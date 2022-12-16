@@ -37,6 +37,7 @@ public class MemMainCommand implements MemberInterface {
 		request.setAttribute("todayCnt", vo.getTodayCnt());
 		request.setAttribute("visitCnt", vo.getVisitCnt());
 		request.setAttribute("strLevel", strLevel);
+		request.setAttribute("photo", vo.getPhoto());
 		
 		//사용자가 방명록에 글쓴 횟수 가져오기..(숙제
 		String name = vo.getName();

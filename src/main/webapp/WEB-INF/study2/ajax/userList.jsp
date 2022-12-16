@@ -55,42 +55,60 @@
 			}
 		});  
 	}
-/* 	
-    function userInput() { //유저등록
-    	let mid = document.getElementById("mid").value.tirm();
-    	let name = document.getElementById("name").value.tirm();
-    	let age = document.getElementById("age").value.tirm();
-    	let address = document.getElementById("address").value.tirm();
-    	
-    	if(mid == "" || name == "" || age == "" || address) {
-    		alert("텍스트박스의 내용을 모두 입력하신후 전송버튼을 클릭해 주세요~");
-    		document.getElementById("mid").focus();
-    		return false;
-    	}
-    	
-    	let query = {
-    			mid  : mid,
-    			name : name,
-    			age  : age,
-    			address : address
-    	}
-    	
-    	$.ajax({
-    		type  : "post",
-    		url   : "${ctp}/userInput.st",
-    		data  : query,
-    		success:function(res) {
-    			if(res == "1") {
-    				alert("등록되었습니다.");
-    				location.reload();
-    			}
-    			else alert("등록 실패~~");
-    		},
-    		error : function() {
-    			alert("전송 오류~~");
-    		}
-    	});
-    } */
+	
+	//유저등록
+  function userInput() {
+  	let mid = document.getElementById("mid");
+  	let name = document.getElementById("name");
+  	let age = document.getElementById("age");
+  	let address = document.getElementById("address");
+  	if(mid.value.trim() == "") {
+  		alert("아이디를 입력하세요");
+  		mid.focus();
+  		return false;
+  	}
+  	else if(name.value.trim() == "") {
+  		alert("성명을 입력하세요");
+  		name.focus();
+  		return false;
+  	}
+  	else if(age.value.trim() == "") {
+  		alert("나이를 입력하세요");
+  		age.focus();
+  		return false;
+  	}
+  	else if(address.value.trim() == "") {
+  		alert("주소를 입력하세요");
+  		address.focus();
+  		return false;
+  	}
+  	
+  	let query = {
+  			mid  : mid.value,
+  			name : name.value,
+  			age  : age.value,
+  			address : address.value
+  	}
+  	
+  	$.ajax({
+  		type  : "post",
+  		url   : "${ctp}/userInput.st",
+  		data  : query,
+  		success:function(res) {
+  			if(res == "1") {
+  				alert("등록되었습니다.");
+  				location.reload();
+  			}
+  			else {
+  				alert(res);
+  				mid.focus();
+  			}
+  		},
+  		error : function() {
+  			alert("전송 오류~~");
+  		}
+  	});
+  }
 </script>
 <p><br/></p>
 <div class="container">

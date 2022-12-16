@@ -1,24 +1,22 @@
 package study2;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import study2.ajax.UserDAO;
-import study2.ajax.UserVO;
+import study2.api.CrimeDAO;
 
-public class UserListCommand implements StudyInterface {
+public class StCrimeDeleteCommand implements StudyInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserDAO dao = new UserDAO();
+		CrimeDAO dao = new CrimeDAO();
 		
-		ArrayList<UserVO> vos = dao.getUserList();
+		String res = dao.setCrimeDeleteOk(); //메세지 띄울거라 res로 받아옴
 		
-		request.setAttribute("vos", vos);
+		response.getWriter().write(res);//바로 넘겨버림
 		
 	}
 

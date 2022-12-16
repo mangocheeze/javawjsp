@@ -45,10 +45,19 @@ public class BoardDAO {
 		ArrayList<BoardVO> vos = new ArrayList<>();  //실무에서 List<BoardVO> 라고쓰는경우도있음
 		try {
 			//sql = "select *, datediff(now() ,wDate) as day_diff from board order by idx desc limit ?,?"; //마지막에쓴 순서대로,
-			sql = "select *,datediff(now(), wDate) as day_diff,"
-					+ " timestampdiff(hour, wDate, now()) as hour_diff"
-					+ " from board order by idx desc limit ?,?"; 
+			/*
+			  sql = "select *,datediff(now(), wDate) as day_diff," 
+			  +" timestampdiff(hour, wDate, now()) as hour_diff" 
+			  +" from board order by idx desc limit ?,?";
 			// 전체를 보여주고 날짜차이계산과 시간차이계산을 각각 별명으로 필드를추가해서 보여줌 결과값을 startIndexNo 부터 페이지사이즈만큼 보여줌
+			 */
+			sql = "SELECT *,datediff(now(), wDate) as day_diff, "
+					+ "timestampdiff(hour, wDate, now()) as hour_diff, "
+					+ "(SELECT count(*)	FROM boardReply WHERE boardIdx=b.idx) as replyCount "
+					+ "FROM board b order by idx desc "
+					+ "limit ?,?";
+			
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startIndexNo);
 			pstmt.setInt(2, pageSize);
@@ -70,6 +79,7 @@ public class BoardDAO {
 				
 				vo.setDay_diff(rs.getInt("day_diff"));
 				vo.setHour_diff(rs.getInt("hour_diff"));
+				vo.setReplyCount(rs.getInt("replyCount"));
 				
 				vos.add(vo);
 			}
